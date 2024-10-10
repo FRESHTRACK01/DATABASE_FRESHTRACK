@@ -1,0 +1,39 @@
+CREATE DATABASE FRESHTRACK;
+
+USE FRESHTRACK;
+
+CREATE TABLE USUARIOS (
+  ID int primary key auto_increment,
+  Nombre varchar (50),
+  correo varchar (50) unique,
+  telefono int (10),
+  contraseña char (10)
+);
+
+CREATE TABLE PRODUCTOS (
+  ID int primary key auto_increment,
+  Folio varchar (20) unique,
+  Nombre char (20),
+  Tipo char (20),
+  cantidad int (10),
+  fecha_entrada date,
+  fecha_salida date,
+  precio float
+);
+
+CREATE TABLE INVENTARIO (
+  ID int primary key auto_increment,
+  Producto_ID int,
+  cantidad int (10),
+  fecha_entrada date,
+  fecha_salida date,
+  precio float,
+  foreign key (Producto_ID) references PRODUCTOS(ID)
+);
+
+CREATE TABLE CAMBIO_CONTRASEÑA (
+  Usuario_ID int,
+  contraseña_antigua char (10),
+  contraseña_nueva char (10),
+  foreign key (Usuario_ID) references USUARIOS(ID)
+);
